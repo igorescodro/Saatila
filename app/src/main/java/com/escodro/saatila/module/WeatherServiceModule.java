@@ -53,7 +53,7 @@ public class WeatherServiceModule {
             final HttpUrl originalHttpUrl = original.url();
 
             final HttpUrl url = originalHttpUrl.newBuilder()
-                    .addQueryParameter("apiid", mContext.getString(R.string.OPEN_WEATHER_API_KEY))
+                    .addQueryParameter("apikey", mContext.getString(R.string.OPEN_WEATHER_API_KEY))
                     .build();
 
             Request.Builder builder = original.newBuilder().url(url);
