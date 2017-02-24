@@ -65,7 +65,7 @@ public class WeatherViewModel extends BaseObservable {
     }
 
     private void processError(Throwable throwable) {
-        Log.i(TAG, throwable.getLocalizedMessage());
+        Log.e(TAG, throwable.getLocalizedMessage());
     }
 
     public ObservableField<WeatherRealm> getWeather() {

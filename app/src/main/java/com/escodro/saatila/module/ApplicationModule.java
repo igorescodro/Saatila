@@ -3,7 +3,6 @@ package com.escodro.saatila.module;
 import android.content.Context;
 
 import com.escodro.saatila.SaatilaApplication;
-import com.escodro.saatila.annotation.ForApplication;
 
 import javax.inject.Singleton;
 
@@ -22,7 +21,6 @@ public class ApplicationModule {
         mApplication = app;
     }
 
-    @ForApplication
     @Provides
     @Singleton
     Context provideContext() {

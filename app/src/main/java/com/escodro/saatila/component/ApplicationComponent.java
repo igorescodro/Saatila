@@ -24,14 +24,4 @@ public interface ApplicationComponent {
     void inject(SaatilaApplication app);
 
     void inject(WeatherFragment fragment);
-
-    final class Initializer {
-        public static ApplicationComponent init(SaatilaApplication app) {
-            return DaggerApplicationComponent.builder()
-                    .applicationModule(new ApplicationModule(app))
-                    .weatherServiceModule(new WeatherServiceModule())
-                    .build();
-        }
-    }
-
 }

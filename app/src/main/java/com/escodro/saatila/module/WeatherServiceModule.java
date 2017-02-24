@@ -4,13 +4,11 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.escodro.saatila.R;
-import com.escodro.saatila.annotation.ForApplication;
 import com.escodro.saatila.network.WeatherService;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -32,10 +30,6 @@ public class WeatherServiceModule {
 
     public static final String GET_WEATHER_URL = "weather?units=metric";
 
-    @ForApplication
-    @Inject
-    Context mContext;
-
     @Provides
     @Singleton
     Gson provideGson() {
@@ -46,14 +40,14 @@ public class WeatherServiceModule {
 
     @Provides
     @Singleton
-    OkHttpClient provideOkHttpClient() {
+    OkHttpClient provideOkHttpClient(@NonNull Context context) {
         final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(chain -> {
             final Request original = chain.request();
             final HttpUrl originalHttpUrl = original.url();
 
             final HttpUrl url = originalHttpUrl.newBuilder()
-                    .addQueryParameter("apikey", mContext.getString(R.string.OPEN_WEATHER_API_KEY))
+                    .addQueryParameter("apikey", context.getString(R.string.OPEN_WEATHER_API_KEY))
                     .build();
 
             Request.Builder builder = original.newBuilder().url(url);

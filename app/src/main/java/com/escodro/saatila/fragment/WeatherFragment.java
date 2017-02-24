@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.escodro.saatila.R;
-import com.escodro.saatila.SaatilaApplication;
 import com.escodro.saatila.databinding.FragmentWeatherBinding;
+import com.escodro.saatila.injector.Injector;
 import com.escodro.saatila.viewmodel.WeatherViewModel;
 
 import javax.inject.Inject;
@@ -28,7 +28,7 @@ public class WeatherFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SaatilaApplication.get(getContext()).getComponent().inject(this);
+        Injector.getApplicationComponent().inject(this);
     }
 
     @Nullable

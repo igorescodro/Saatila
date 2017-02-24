@@ -1,9 +1,9 @@
 package com.escodro.saatila;
 
 import android.app.Application;
-import android.content.Context;
 
 import com.escodro.saatila.component.ApplicationComponent;
+import com.escodro.saatila.injector.Injector;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -13,8 +13,6 @@ import io.realm.RealmConfiguration;
  */
 
 public class SaatilaApplication extends Application {
-
-    private ApplicationComponent mApplicationComponent;
 
     @Override
     public void onCreate() {
@@ -32,18 +30,7 @@ public class SaatilaApplication extends Application {
     }
 
     private void createComponent() {
-        mApplicationComponent = ApplicationComponent.Initializer.init(this);
-        mApplicationComponent.inject(this);
-    }
-
-    public ApplicationComponent getComponent() {
-        if (mApplicationComponent == null) {
-            createComponent();
-        }
-        return mApplicationComponent;
-    }
-
-    public static SaatilaApplication get(Context context) {
-        return (SaatilaApplication) context.getApplicationContext();
+        Injector.initializeApplicationComponent(this);
+        Injector.getApplicationComponent().inject(this);
     }
 }
