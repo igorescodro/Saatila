@@ -2,11 +2,10 @@ package com.escodro.saatila;
 
 import android.app.Application;
 
-import com.escodro.saatila.component.ApplicationComponent;
+import com.escodro.saatila.database.DatabaseRealm;
 import com.escodro.saatila.injector.Injector;
 
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
+import javax.inject.Inject;
 
 /**
  * Created by IgorEscodro on 15/12/16.
@@ -14,19 +13,18 @@ import io.realm.RealmConfiguration;
 
 public class SaatilaApplication extends Application {
 
+    @Inject
+    DatabaseRealm mDatabaseRealm;
+
     @Override
     public void onCreate() {
         super.onCreate();
-        initRealm();
         createComponent();
+        initRealm();
     }
 
     private void initRealm() {
-        final RealmConfiguration realmConfig = new RealmConfiguration
-                .Builder(this)
-                .deleteRealmIfMigrationNeeded()
-                .build();
-        Realm.setDefaultConfiguration(realmConfig);
+        mDatabaseRealm.setup();
     }
 
     private void createComponent() {
