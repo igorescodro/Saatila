@@ -42,14 +42,13 @@ public class WeatherViewModel extends BaseObservable {
         Injector.getApplicationComponent().inject(this);
         mService = service;
         mWeather = new ObservableField<>();
-        sendRequest();
     }
 
     public void onDestroy() {
         mWeatherDb.close();
     }
 
-    private void sendRequest() {
+    public void sendRequest() {
         final String name = "San Francisco";
 
         setVisibility(View.VISIBLE);

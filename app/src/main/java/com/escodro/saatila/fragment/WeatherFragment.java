@@ -49,6 +49,12 @@ public class WeatherFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        mWeatherViewModel.sendRequest();
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         mWeatherViewModel.onDestroy();
