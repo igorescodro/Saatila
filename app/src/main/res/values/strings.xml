@@ -2,4 +2,8 @@
     <string name="app_name">Saatila</string>
 
     <string name="weather_last_updated">Last update: %s</string>
+
+    <string name="menu_home">Weather</string>
+    <string name="menu_preferences">Preferences</string>
+
 </resources>
