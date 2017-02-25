@@ -31,6 +31,7 @@ public class WeatherDatabase extends Database {
                         .getName());
             }
             weatherRealm.setTemp(weatherResponse.getMain().getTemp());
+            weatherRealm.setRefreshDate(System.currentTimeMillis());
         });
         realm.close();
         return weatherResponse.getName();

@@ -6,7 +6,7 @@ package com.escodro.saatila.database;
 
 public abstract class Database {
 
-    private DatabaseRealm mRealmDb;
+    private final DatabaseRealm mRealmDb;
 
     public Database(DatabaseRealm realmDb) {
         mRealmDb = realmDb;

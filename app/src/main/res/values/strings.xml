@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Saatila</string>
+
+    <string name="weather_last_updated">Last update: %s</string>
 </resources>
