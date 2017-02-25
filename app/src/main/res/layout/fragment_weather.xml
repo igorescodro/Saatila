@@ -8,15 +8,30 @@
             type="com.escodro.saatila.viewmodel.WeatherViewModel"/>
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <View
+            android:id="@+id/vw_weather_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/background_light"
+            android:visibility="@{viewModel.loadingVisibility}"/>
+
+        <ProgressBar
+            android:id="@+id/pb_weather_loading"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerInParent="true"
+            android:visibility="@{viewModel.loadingVisibility}"/>
 
         <TextView
             android:id="@+id/tv_weather_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="@{viewModel.weather.name}"
             android:textSize="48sp"/>
 
@@ -24,9 +39,11 @@
             android:id="@+id/tv_weather_temperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/tv_weather_city"
+            android:gravity="center"
             android:text="@{viewModel.weather.temp}"
             android:textSize="48sp"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </layout>

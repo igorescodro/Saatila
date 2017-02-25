@@ -25,8 +25,10 @@ public class DatabaseRealm {
     }
 
     public void setup() {
+        Realm.init(mContext);
         if (mRealmConfiguration == null) {
-            mRealmConfiguration = new RealmConfiguration.Builder(mContext).build();
+            mRealmConfiguration = new RealmConfiguration.Builder()
+                    .build();
             Realm.setDefaultConfiguration(mRealmConfiguration);
         } else {
             throw new IllegalStateException("Database already configured");
