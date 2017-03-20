@@ -1,5 +1,6 @@
 package com.escodro.saatila.module;
 
+import android.app.Application;
 import android.content.Context;
 
 import com.escodro.saatila.SaatilaApplication;
@@ -19,6 +20,12 @@ public class ApplicationModule {
 
     public ApplicationModule(SaatilaApplication app) {
         mApplication = app;
+    }
+
+    @Provides
+    @Singleton
+    Application provideApplication() {
+        return mApplication;
     }
 
     @Provides

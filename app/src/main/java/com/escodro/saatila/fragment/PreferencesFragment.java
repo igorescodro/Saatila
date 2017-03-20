@@ -2,22 +2,41 @@ package com.escodro.saatila.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.escodro.saatila.R;
+import com.escodro.saatila.controller.PreferencesController;
+import com.escodro.saatila.injector.Injector;
+
+import javax.inject.Inject;
 
 /**
  * Created by IgorEscodro on 25/02/17.
  */
-public class PreferencesFragment extends Fragment {
+public class PreferencesFragment extends PreferenceFragmentCompat {
 
-    @Nullable
+    @Inject
+    PreferencesController mController;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_preferences, container, false);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Injector.getApplicationComponent().inject(this);
+    }
+
+    @Override
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        setPreferencesFromResource(R.xml.preferences, rootKey);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        final ListPreference listPreference = (ListPreference) findPreference(
+                PreferencesController.KEY_SCALE);
+        mController.setListPreference(listPreference);
     }
 }

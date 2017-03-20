@@ -5,6 +5,7 @@ import com.escodro.saatila.component.ApplicationComponent;
 import com.escodro.saatila.component.DaggerApplicationComponent;
 import com.escodro.saatila.module.ApplicationModule;
 import com.escodro.saatila.module.DatabaseModule;
+import com.escodro.saatila.module.PreferencesModule;
 import com.escodro.saatila.module.WeatherServiceModule;
 
 import java.util.Objects;
@@ -25,6 +26,7 @@ public class Injector {
                 .applicationModule(new ApplicationModule(application))
                 .weatherServiceModule(new WeatherServiceModule())
                 .databaseModule(new DatabaseModule())
+                .preferencesModule(new PreferencesModule())
                 .build();
     }
 

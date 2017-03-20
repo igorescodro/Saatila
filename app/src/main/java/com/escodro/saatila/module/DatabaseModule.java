@@ -1,5 +1,9 @@
 package com.escodro.saatila.module;
 
+import android.app.Application;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import com.escodro.saatila.database.DatabaseRealm;
 import com.escodro.saatila.database.WeatherDatabase;
 
@@ -25,5 +29,11 @@ public class DatabaseModule {
     @Singleton
     public WeatherDatabase provideWeatherDatabase(DatabaseRealm databaseRealm) {
         return new WeatherDatabase(databaseRealm);
+    }
+
+    @Provides
+    @Singleton
+    public SharedPreferences provideSharedPreferences(Application app) {
+        return PreferenceManager.getDefaultSharedPreferences(app);
     }
 }
